@@ -165,7 +165,7 @@ project(":") {
         implementation("com.jgoodies:forms:1.2.1")
         intellijPlatform {
             intellijIdeaCommunity(buildVersionData.ideaSDKShortVersion)
-            //bundledModule("intellij.spellchecker")
+            bundledModule("intellij.spellchecker")
         }
     }
 
