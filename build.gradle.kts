@@ -19,8 +19,8 @@ import org.apache.tools.ant.taskdefs.condition.Os
 import java.io.ByteArrayOutputStream
 
 plugins {
-    id("org.jetbrains.intellij").version("1.10.0")
-    id("org.jetbrains.kotlin.jvm").version("1.7.22")
+    id("org.jetbrains.intellij").version("1.13.3")
+    id("org.jetbrains.kotlin.jvm").version("1.8.21")
     id("de.undercouch.download").version("5.3.0")
 }
 
@@ -41,38 +41,13 @@ data class BuildData(
 
 val buildDataList = listOf(
     BuildData(
-        ideaSDKShortVersion = "231",
-        // 223.7571.123-EAP-SNAPSHOT
-        // LATEST-EAP-SNAPSHOT
-        ideaSDKVersion = "LATEST-EAP-SNAPSHOT",
-        sinceBuild = "231",
-        untilBuild = "231.*",
+        ideaSDKShortVersion = "243",
+        ideaSDKVersion = "243.21565.193",
+        sinceBuild = "243",
+        untilBuild = "243.*",
         bunch = "212",
         targetCompatibilityLevel = JavaVersion.VERSION_17,
         jvmTarget = "17"
-    ),
-    BuildData(
-        ideaSDKShortVersion = "223",
-        ideaSDKVersion = "2022.3",
-        sinceBuild = "223",
-        untilBuild = "223.*",
-        bunch = "212",
-        targetCompatibilityLevel = JavaVersion.VERSION_17,
-        jvmTarget = "17"
-    ),
-    BuildData(
-        ideaSDKShortVersion = "222",
-        ideaSDKVersion = "2022.2",
-        sinceBuild = "212",
-        untilBuild = "222.*",
-        bunch = "212"
-    ),
-    BuildData(
-        ideaSDKShortVersion = "211",
-        ideaSDKVersion = "2021.1",
-        sinceBuild = "211",
-        untilBuild = "211.*",
-        bunch = "203"
     )
 )
 
@@ -193,10 +168,10 @@ project(":") {
         }
     }
 
-    configure<JavaPluginConvention> {
+    /*configure<JavaPluginConvention> {
         sourceCompatibility = buildVersionData.targetCompatibilityLevel
         targetCompatibility = buildVersionData.targetCompatibilityLevel
-    }
+    }*/
 
     intellij {
         type.set("IC")
@@ -211,15 +186,15 @@ project(":") {
         doLast {
             val rev = getRev()
             // reset
-            exec {
-                executable = "git"
-                args("reset", "HEAD", "--hard")
-            }
+            //exec {
+                //executable = "git"
+                //args("reset", "HEAD", "--hard")
+            //}
             // clean untracked files
-            exec {
-                executable = "git"
-                args("clean", "-d", "-f")
-            }
+            //exec {
+                //executable = "git"
+                //args("clean", "-d", "-f")
+            //}
             // switch
             exec {
                 executable = if (isWin) "bunch/bin/bunch.bat" else "bunch/bin/bunch"
@@ -253,9 +228,9 @@ project(":") {
             untilBuild.set(buildVersionData.untilBuild)
         }
 
-        instrumentCode {
-            compilerVersion.set(buildVersionData.instrumentCodeCompilerVersion)
-        }
+        //instrumentCode {
+        //    compilerVersion.set(buildVersionData.instrumentCodeCompilerVersion)
+        //}
 
         publishPlugin {
             token.set(System.getenv("IDEA_PUBLISH_TOKEN"))
