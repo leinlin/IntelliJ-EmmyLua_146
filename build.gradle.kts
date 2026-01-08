@@ -19,6 +19,8 @@ import org.apache.tools.ant.taskdefs.condition.Os
 import org.jetbrains.intellij.platform.gradle.tasks.PrepareSandboxTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.ByteArrayOutputStream
+import kotlin.text.get
+import kotlin.text.set
 
 plugins {
     id("org.jetbrains.intellij.platform") version "2.7.0"
@@ -44,7 +46,7 @@ data class BuildData(
 val buildDataList = listOf(
     BuildData(
         ideaSDKShortVersion = "2025.2",
-        ideaSDKVersion = "252.28539.13",
+        ideaSDKVersion = "252.23892.409",
         sinceBuild = "252",
         untilBuild = "252.*",
         bunch = "212",
